@@ -1,4 +1,4 @@
 # herald
-A simple webserver for static files without dependencies
+A simple webserver without dependencies for static files 
 
 just run it :)
