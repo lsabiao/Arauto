@@ -6,7 +6,7 @@ just run it :)
 
 
 # herald (arauto)
-um servidor simples, sem depêndecias para servir arquivos estáticos
+um servidor web simples, sem depêndecias para servir arquivos estáticos
 
 só rodar o script :)
 
