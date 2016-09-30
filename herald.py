@@ -3,10 +3,12 @@ import datetime
 import mimetypes
 import os
 
-version = "1.0"
+version = "1.01"
 
 mimetypes.init()
 
+#mimetypes not supported in default python
+mimetypes.add_type("application/font-woff2",".woff2")
 
 class response():
     '''
@@ -59,7 +61,10 @@ class response():
                 raise
             temp = open(file,"rb").read()
             filename, file_extension = os.path.splitext(file)
-            self.contentType = mimetypes.types_map[file_extension]
+	    try:
+                self.contentType = mimetypes.types_map[file_extension]
+	    except:
+	        print "Files '{0}' not supported yet".format(file_extension)
             self.contentLen  = len(temp)
             self.payload = temp
             stat = "served (200)"
@@ -76,6 +81,8 @@ def getURL(url):
     #get the file name and path from the get URL
     url = url.split("\r\n")[0]
     arg = url[5:url.rfind(" ")]
+    if(arg == ""):
+        arg = "index.html"
     return arg
     
 def main(host="",port=8081):
@@ -88,7 +95,7 @@ def main(host="",port=8081):
     ip = socket.gethostbyaddr(socket.gethostbyname(socket.gethostname()))
     ip = ip[2][0]
     
-    print "Hello, Master"
+    print "**Hello, Master**"
     print "Serving at: {ip}:{port}".format(ip= ip , port=port)
     print 
 
@@ -110,7 +117,12 @@ def main(host="",port=8081):
         conn.close()
 
 if __name__ == "__main__":
-    main()
-
-
-
+    import sys
+    try:
+        newPort = int(sys.argv[1])
+        if(newPort <= 1024):
+            print "You need admin permissions to run this port, using default"
+            raise
+    except:
+	newPort = 25449
+    main(port = newPort)
