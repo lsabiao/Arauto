@@ -3,7 +3,7 @@ import datetime
 import mimetypes
 import os
 
-version = "1.01"
+version = "1.02"
 
 mimetypes.init()
 
@@ -80,9 +80,15 @@ class response():
 def getURL(url):
     #get the file name and path from the get URL
     url = url.split("\r\n")[0]
-    arg = url[5:url.rfind(" ")]
+    arg = url.split(" ")[1]
+    arg = arg.lstrip("/")
     if(arg == ""):
         arg = "index.html"
+        return arg
+    if("." not in arg):
+        arg= arg.rstrip("/")
+        arg+="/index.html"
+        return arg
     return arg
     
 def main(host="",port=8081):
@@ -103,18 +109,21 @@ def main(host="",port=8081):
     while True:
         conn, addr = s.accept()
         data = conn.recv(1024)
+        try:
+            #get the file name from the URL
+            fileRequested = getURL(data)
 
-        #get the file name from the URL
-        fileRequested = getURL(data)
+            #create a response object
+            c = response(addr)
+            #add a file to the response
+            c.addFile(fileRequested)
 
-        #create a response object
-        c = response(addr)
-        #add a file to the response
-        c.addFile(fileRequested)
-
-        #send the file as a string.
-        conn.sendall(str(c))
-        conn.close()
+            #send the file as a string.
+            conn.sendall(str(c))
+            conn.close()
+        except:
+            conn.close()
+            
 
 if __name__ == "__main__":
     import sys
