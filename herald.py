@@ -91,7 +91,7 @@ def getURL(url):
         return arg
     return arg
     
-def main(host="",port=8081):
+def main(host="",port=8088):
     #python's socket magic
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -132,5 +132,4 @@ if __name__ == "__main__":
         main(port = newPort)
     except:
         print "[You need admin permissions to run this port, using 8088]"
-	newPort = 8088
-    main(port = newPort)
+    main()
