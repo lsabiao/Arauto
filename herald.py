@@ -129,9 +129,8 @@ if __name__ == "__main__":
     import sys
     try:
         newPort = int(sys.argv[1])
-        if(newPort <= 1024):
-            print "You need admin permissions to run this port, using default"
-            raise
+        main(port = newPort)
     except:
-	newPort = 25449
+        print "[You need admin permissions to run this port, using 8088]"
+	newPort = 8088
     main(port = newPort)
