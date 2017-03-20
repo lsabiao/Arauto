@@ -1,12 +1,12 @@
-# herald
-A simple webserver without dependencies for static files 
+# Herald
+A simple webserver without dependencies for static files written in pure-python.
 
 just run it :)
 
 
 
-# herald (arauto)
-um servidor web simples, sem depêndecias para servir arquivos estáticos
+# Herald (arauto)
+um servidor web simples, sem depêndecias para servir arquivos estáticos escrito em python puro.
 
 só rodar o script :)
 
