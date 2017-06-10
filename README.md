@@ -1,11 +1,11 @@
-# Herald
+# Arauto (Herald)
 A simple webserver without dependencies for static files written in pure-python.
 
 just run it :)
 
 
 
-# Herald (arauto)
+# Arauto 
 um servidor web simples, sem depêndecias para servir arquivos estáticos escrito em python puro.
 
 só rodar o script :)
