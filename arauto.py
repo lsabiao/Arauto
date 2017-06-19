@@ -146,5 +146,5 @@ if __name__ == "__main__":
         s = Arauto(port = newPort)
     except:
         print "[You need admin permissions to run this port, using 8088]"
-    s = Arauto()
+    	s = Arauto()
     s.run()
